@@ -1,0 +1,30 @@
+.logo {
+  padding: 0.2em 0 0;
+  margin-right: auto;
+}
+
+.logo a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.logo a:visited {
+  color: inherit;
+}
+
+.logo img {
+  height: 2.5em;
+}
+
+.logo-text {
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1;
+  width: 50px;
+}
+
+nav .logo-text {
+  display: none;
+}

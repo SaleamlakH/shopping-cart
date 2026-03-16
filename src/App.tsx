@@ -1,5 +1,14 @@
+import CartLink from './layout/navigation/components/cart-link/CartLink';
+import Navigation from './layout/navigation/Navigation';
+
 function App() {
-  return <h1>Setup</h1>;
+  return (
+    <>
+      <Navigation>
+        <CartLink quantity={0} />
+      </Navigation>
+    </>
+  );
 }
 
 export default App;
