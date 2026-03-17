@@ -6,7 +6,6 @@ function NavigationLinks({ children }: { children: ReactNode }) {
   return (
     <div className={style.pages}>
       <div className={style.links}>
-        <Link to="/">Home</Link>
         <Link to="/products">Products</Link>
       </div>
 
