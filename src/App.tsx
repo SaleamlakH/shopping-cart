@@ -1,12 +1,18 @@
 import Footer from './layout/footer/Footer';
 import CartLink from './layout/navigation/components/cart-link/CartLink';
+import NavigationLinks from './layout/navigation/components/navigation-links/NavigationLinks';
+import Search from './layout/navigation/components/search/Search';
 import Navigation from './layout/navigation/Navigation';
 
 function App() {
   return (
     <>
       <Navigation>
-        <CartLink quantity={0} />
+        <NavigationLinks>
+          <CartLink quantity={0} />
+        </NavigationLinks>
+
+        <Search />
       </Navigation>
 
       <Footer />
