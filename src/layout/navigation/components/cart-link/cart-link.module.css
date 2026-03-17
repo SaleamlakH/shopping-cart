@@ -21,13 +21,7 @@
   border-radius: 50px;
 }
 
-.cart a:hover::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.cart a:hover {
   border-radius: 50px;
   background-color: hsl(240 100 80 / 0.2);
 }
