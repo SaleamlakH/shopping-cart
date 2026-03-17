@@ -1,10 +1,11 @@
 .cart {
   border-radius: 50px;
   background-color: hsl(0 0 100);
+  padding: 0.2em;
 }
 
 .cart a {
-  padding: 0.5em 0.5em 0.5em 0.8em;
+  padding: 0.3em 0.5em;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
