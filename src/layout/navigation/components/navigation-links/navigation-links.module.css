@@ -1,9 +1,7 @@
 .pages {
-  flex: 1;
   list-style: none;
   display: flex;
   align-items: center;
-  max-width: 325px;
   color: hsl(240 100 50);
 }
 
@@ -13,9 +11,8 @@
 
 .links {
   flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px;
+  display: flex;
+  justify-content: space-around;
   border-radius: 50px;
   margin: 0 0.5em;
   background: hsl(0 0 100);
