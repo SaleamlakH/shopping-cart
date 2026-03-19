@@ -18,10 +18,17 @@ function Search({ categories }: { categories: string[] }) {
         ))}
       </select>
 
-      <input className={style.input} placeholder="Search" type="text" />
+      <input
+        type="text"
+        name="q"
+        className={style.input}
+        placeholder="Search"
+        aria-label="search"
+      />
 
-      <button className={style['search-btn']}>
+      <button className={style['search-btn']} aria-label="submit search">
         <svg
+          data-testid="search-icon"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
