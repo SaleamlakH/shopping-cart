@@ -1,11 +1,21 @@
 import { Form } from 'react-router';
 import style from './search.module.css';
 
-function Search() {
+function Search({ categories }: { categories: string[] }) {
   return (
-    <Form className={style.search} role="search" method="GET" action="/products">
+    <Form
+      className={style.search}
+      role="search"
+      method="GET"
+      action="/products"
+    >
       <select name="category" className={style.select} aria-label="category">
         <option value="">Category</option>;
+        {categories.map((category) => (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
       </select>
 
       <input className={style.input} placeholder="Search" type="text" />

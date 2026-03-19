@@ -12,7 +12,7 @@ function App() {
           <CartLink quantity={0} />
         </NavigationLinks>
 
-        <Search />
+        <Search categories={[]}/>
       </Navigation>
 
       <Footer />
