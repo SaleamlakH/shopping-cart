@@ -1,10 +1,11 @@
+import { Form } from 'react-router';
 import style from './search.module.css';
 
 function Search() {
   return (
-    <search className={style.search}>
-      <select className={style.select} aria-label="category">
-        <option value="">Category</option>
+    <Form className={style.search} role="search" method="GET" action="/products">
+      <select name="category" className={style.select} aria-label="category">
+        <option value="">Category</option>;
       </select>
 
       <input className={style.input} placeholder="Search" type="text" />
@@ -26,7 +27,7 @@ function Search() {
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       </button>
-    </search>
+    </Form>
   );
 }
 
