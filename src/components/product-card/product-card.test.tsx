@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
-import ProductCard from '../product-card/ProductCard';
-import type { Product } from '../product-card/ProductCard';
+import ProductCard from './ProductCard';
+import type { Product } from './ProductCard';
 import shoppingCartImg from '../../assets/shopping-cart.svg';
 import userEvent from '@testing-library/user-event';
 

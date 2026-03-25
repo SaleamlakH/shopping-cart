@@ -2,7 +2,7 @@ import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { userEvent } from '@testing-library/user-event';
-import NavigationLinks from '../components/navigation-links/NavigationLinks';
+import NavigationLinks from './NavigationLinks';
 
 describe('NavigationLinks component', () => {
   test('render product page link', () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Search from '../components/search/Search';
+import Search from './Search';
 import userEvent from '@testing-library/user-event';
 import {
   createMemoryRouter,

@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
-import Logo from '../components/logo/Logo';
+import Logo from './Logo';
 
 describe('logo component', () => {
   test('render Logo', () => {

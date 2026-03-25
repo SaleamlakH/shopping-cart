@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import CartLink from '../components/cart-link/CartLink';
+import CartLink from './CartLink';
 import { MemoryRouter } from 'react-router';
 
 describe('cart Navigation link', () => {
