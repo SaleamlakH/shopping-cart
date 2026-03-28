@@ -1,0 +1,84 @@
+.card {
+  font-size: 1rem;
+  margin: 0.5em 1em;
+  padding: 1em;
+  border-radius: 10px;
+  background-color: hsl(0 0 100);
+  box-shadow: 0px 0px 5px hsl(0 0 50 / 0.3);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  padding: 2em;
+  border-radius: 10px;
+  background-color: hsl(220 30 85);
+  box-shadow: 0px 0px 5px hsl(0 0 50 / 0.3);
+}
+
+.title {
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+.description {
+  margin: 0;
+  font-size: 0.8em;
+  height: 2.5em;
+  text-overflow: clip;
+  overflow: hidden;
+}
+
+.price {
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.fieldset {
+  border: none;
+  padding: 0;
+}
+
+.input {
+  margin: 5px;
+  padding: 0.7em;
+  font-size: 1em;
+  font-weight: 700;
+  color: inherit;
+  background-color: inherit;
+  border: 1px solid hsl(0 0 50);
+  text-align: center;
+  border-radius: 10px;
+  width: 100px;
+}
+
+.decrease-btn,
+.increase-btn {
+  padding: 0.8em 1.5em;
+  border-radius: 10px;
+  border: 1px solid hsl(0 0 50);
+  background-color: hsl(240 100 50);
+  color: hsl(0 0 100);
+  font-size: 0.9em;
+  font-weight: 700;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.8em;
+  border-radius: 10px;
+  border: none;
+  background-color: hsl(240 100 50);
+  color: hsl(0 0 100);
+  font-weight: 700;
+  font-size: 0.9em;
+}

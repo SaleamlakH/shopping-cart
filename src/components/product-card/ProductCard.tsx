@@ -1,4 +1,5 @@
 import { useState, type ChangeEvent } from 'react';
+import style from './product-card.module.css';
 
 export interface Product {
   id: number;
@@ -28,33 +29,44 @@ function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <article aria-labelledby="title">
-      <img src={product.image} alt="" />
-      <h2 id="title">{product.title}</h2>
-      <p>{product.description}</p>
-      <p>
-        <span>Price: </span>
+    <article className={style.card} aria-labelledby="title">
+      <img className={style['product-img']} src={product.image} alt="" />
+      <h2 id="title" className={style.title}>
+        {product.title}
+      </h2>
+      <p className={style.description}>{product.description}</p>
+      <p className={style.price}>
+        <span className={style.hidden}>Price: </span>
         {product.price}
       </p>
 
-      <fieldset>
-        <legend>quantity</legend>
-        <button aria-label="decrease quantity" onClick={decrement}>
+      <fieldset className={style.fieldset}>
+        <legend className={style.hidden}>quantity</legend>
+        <button
+          className={style['decrease-btn']}
+          aria-label="decrease quantity"
+          onClick={decrement}
+        >
           -
         </button>
         <input
+          className={style.input}
           type="number"
           name="quantity"
           value={quantity}
           min={1}
           onChange={handleChange}
         />
-        <button aria-label="increase quantity" onClick={increment}>
+        <button
+          className={style['increase-btn']}
+          aria-label="increase quantity"
+          onClick={increment}
+        >
           +
         </button>
       </fieldset>
 
-      <button>Add To Cart</button>
+      <button className={style['submit-btn']}>Add To Cart</button>
     </article>
   );
 }
