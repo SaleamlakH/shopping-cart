@@ -1,5 +1,7 @@
 import { useState, type ChangeEvent } from 'react';
 import style from './product-card.module.css';
+import { useOutletContext } from 'react-router';
+import type { OutletContextType } from '../../App';
 
 export interface Product {
   id: number;
@@ -15,17 +17,34 @@ export interface Product {
 }
 
 function ProductCard({ product }: { product: Product }) {
+  const context = useOutletContext<OutletContextType>();
+  if (!context) throw new Error('CartContext not found');
+
+  const { addToCart } = context;
   const [quantity, setQuantity] = useState(1);
 
-  const increment = () => setQuantity((prev) => ++prev);
+  const increment = () => {
+    setQuantity((prev) => ++prev);
+    addToCart({ id: product.id, quantity: quantity + 1 });
+  };
 
   const decrement = () => {
-    if (quantity > 1) setQuantity((prev) => --prev);
+    if (quantity > 1) {
+      setQuantity((prev) => --prev);
+      addToCart({ id: product.id, quantity: quantity - 1 });
+    }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const number = Number(e.target.value);
-    if (number >= 1) setQuantity(number);
+    if (number >= 1) {
+      setQuantity(number);
+      addToCart({ id: product.id, quantity: number });
+    }
+  };
+
+  const handleAddToCart = () => {
+    addToCart({ id: product.id, quantity });
   };
 
   return (
@@ -46,9 +65,8 @@ function ProductCard({ product }: { product: Product }) {
           className={style['decrease-btn']}
           aria-label="decrease quantity"
           onClick={decrement}
-        >
-          -
-        </button>
+        ></button>
+        -
         <input
           className={style.input}
           type="number"
@@ -66,7 +84,9 @@ function ProductCard({ product }: { product: Product }) {
         </button>
       </fieldset>
 
-      <button className={style['submit-btn']}>Add To Cart</button>
+      <button onClick={handleAddToCart} className={style['submit-btn']}>
+        Add To Cart
+      </button>
     </article>
   );
 }
