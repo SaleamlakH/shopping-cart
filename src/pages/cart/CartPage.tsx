@@ -8,13 +8,13 @@ function CartPage() {
   const context = useOutletContext<OutletContextType>();
   if (!context) throw new Error('CartContext not found');
 
-  const { cart } = context;
+  const { cartItemsQuantity } = context;
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const loadProducts = async () => {
       const newProducts = await Promise.all(
-        cart.products.map(({ id }) =>
+        Object.keys(cartItemsQuantity).map((id) =>
           fetch(`https://fakestoreapi.com/products/${id}`).then((response) =>
             response.json()
           )
@@ -25,7 +25,7 @@ function CartPage() {
     };
 
     loadProducts();
-  }, [cart.products]);
+  }, [cartItemsQuantity]);
 
   return (
     <>

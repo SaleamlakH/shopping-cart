@@ -13,7 +13,9 @@ export interface Cart {
 }
 
 export interface OutletContextType {
-  cart: Cart;
+  cartItemsQuantity: {
+    [key: number]: number;
+  };
   addToCart: ({ id, quantity }: Cart['products'][number]) => void;
 }
 
@@ -21,6 +23,16 @@ function App() {
   const location = useLocation();
   const [cart, setCart] = useState<Cart>({ id: 1, userId: 1, products: [] });
 
+  // map cart.products into {[id]: quantity}
+  const cartItemsQuantity: OutletContextType['cartItemsQuantity'] = cart.products.reduce(
+    (items, { id, quantity }) => {
+      items[id] = quantity;
+      return items;
+    },
+    {} as OutletContextType['cartItemsQuantity']
+  );
+
+  // get total items in cart
   const numCartItems = cart.products.reduce(
     (sum, { quantity }) => sum + quantity,
     0
@@ -61,7 +73,7 @@ function App() {
       </Navigation>
 
       <main>
-        <Outlet context={{ cart, addToCart }} />
+        <Outlet context={{ cartItemsQuantity, addToCart }} />
       </main>
 
       <Footer />

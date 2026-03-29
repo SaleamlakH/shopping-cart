@@ -20,8 +20,8 @@ function ProductCard({ product }: { product: Product }) {
   const context = useOutletContext<OutletContextType>();
   if (!context) throw new Error('CartContext not found');
 
-  const { addToCart } = context;
-  const [quantity, setQuantity] = useState(1);
+  const { cartItemsQuantity, addToCart } = context;
+  const [quantity, setQuantity] = useState(cartItemsQuantity[product.id] || 1);
 
   const increment = () => {
     setQuantity((prev) => ++prev);
@@ -65,8 +65,9 @@ function ProductCard({ product }: { product: Product }) {
           className={style['decrease-btn']}
           aria-label="decrease quantity"
           onClick={decrement}
-        ></button>
-        -
+        >
+          -
+        </button>
         <input
           className={style.input}
           type="number"
