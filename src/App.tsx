@@ -17,6 +17,7 @@ export interface OutletContextType {
     [key: number]: number;
   };
   addToCart: ({ id, quantity }: Cart['products'][number]) => void;
+  deleteCartItem: (productId: number) => void;
 }
 
 function App() {
@@ -24,13 +25,14 @@ function App() {
   const [cart, setCart] = useState<Cart>({ id: 1, userId: 1, products: [] });
 
   // map cart.products into {[id]: quantity}
-  const cartItemsQuantity: OutletContextType['cartItemsQuantity'] = cart.products.reduce(
-    (items, { id, quantity }) => {
-      items[id] = quantity;
-      return items;
-    },
-    {} as OutletContextType['cartItemsQuantity']
-  );
+  const cartItemsQuantity: OutletContextType['cartItemsQuantity'] =
+    cart.products.reduce(
+      (items, { id, quantity }) => {
+        items[id] = quantity;
+        return items;
+      },
+      {} as OutletContextType['cartItemsQuantity']
+    );
 
   // get total items in cart
   const numCartItems = cart.products.reduce(
@@ -62,6 +64,14 @@ function App() {
     });
   };
 
+  const deleteCartItem = (productId: number) => {
+    setCart((prev) => {
+      const newProducts = prev.products.filter(({ id }) => productId !== id);
+
+      return { ...prev, products: newProducts };
+    });
+  };
+
   return (
     <>
       <Navigation>
@@ -73,7 +83,7 @@ function App() {
       </Navigation>
 
       <main>
-        <Outlet context={{ cartItemsQuantity, addToCart }} />
+        <Outlet context={{ cartItemsQuantity, addToCart, deleteCartItem }} />
       </main>
 
       <Footer />

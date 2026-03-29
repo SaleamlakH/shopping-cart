@@ -2,6 +2,7 @@ import { useState, type ChangeEvent } from 'react';
 import style from './product-card.module.css';
 import { useOutletContext } from 'react-router';
 import type { OutletContextType } from '../../App';
+import deleteIcon from '../../assets/delete-icon.svg';
 
 export interface Product {
   id: number;
@@ -20,7 +21,7 @@ function ProductCard({ product }: { product: Product }) {
   const context = useOutletContext<OutletContextType>();
   if (!context) throw new Error('CartContext not found');
 
-  const { cartItemsQuantity, addToCart } = context;
+  const { cartItemsQuantity, addToCart, deleteCartItem } = context;
   const [quantity, setQuantity] = useState(cartItemsQuantity[product.id] || 1);
 
   const increment = () => {
@@ -59,37 +60,48 @@ function ProductCard({ product }: { product: Product }) {
         {product.price}
       </p>
 
-      {cartItemsQuantity[product.id] ? (
-        <fieldset className={style.fieldset}>
-          <legend className={style.hidden}>quantity</legend>
-          <button
-            className={style['decrease-btn']}
-            aria-label="decrease quantity"
-            onClick={decrement}
-          >
-            -
+      <div className={style['btns-container']}>
+        {cartItemsQuantity[product.id] ? (
+          <>
+            <fieldset className={style.fieldset}>
+              <legend className={style.hidden}>quantity</legend>
+              <button
+                className={style['decrease-btn']}
+                aria-label="decrease quantity"
+                onClick={decrement}
+              >
+                -
+              </button>
+              <input
+                className={style.input}
+                type="number"
+                name="quantity"
+                value={quantity}
+                min={1}
+                onChange={handleChange}
+              />
+              <button
+                className={style['increase-btn']}
+                aria-label="increase quantity"
+                onClick={increment}
+              >
+                +
+              </button>
+            </fieldset>
+
+            <button
+              className={style['delete-btn']}
+              onClick={() => deleteCartItem(product.id)}
+            >
+              <img src={deleteIcon} alt="" />
+            </button>
+          </>
+        ) : (
+          <button onClick={handleAddToCart} className={style['submit-btn']}>
+            Add To Cart
           </button>
-          <input
-            className={style.input}
-            type="number"
-            name="quantity"
-            value={quantity}
-            min={1}
-            onChange={handleChange}
-          />
-          <button
-            className={style['increase-btn']}
-            aria-label="increase quantity"
-            onClick={increment}
-          >
-            +
-          </button>
-        </fieldset>
-      ) : (
-        <button onClick={handleAddToCart} className={style['submit-btn']}>
-          Add To Cart
-        </button>
-      )}
+        )}
+      </div>
     </article>
   );
 }
