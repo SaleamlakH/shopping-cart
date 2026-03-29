@@ -59,35 +59,37 @@ function ProductCard({ product }: { product: Product }) {
         {product.price}
       </p>
 
-      <fieldset className={style.fieldset}>
-        <legend className={style.hidden}>quantity</legend>
-        <button
-          className={style['decrease-btn']}
-          aria-label="decrease quantity"
-          onClick={decrement}
-        >
-          -
+      {cartItemsQuantity[product.id] ? (
+        <fieldset className={style.fieldset}>
+          <legend className={style.hidden}>quantity</legend>
+          <button
+            className={style['decrease-btn']}
+            aria-label="decrease quantity"
+            onClick={decrement}
+          >
+            -
+          </button>
+          <input
+            className={style.input}
+            type="number"
+            name="quantity"
+            value={quantity}
+            min={1}
+            onChange={handleChange}
+          />
+          <button
+            className={style['increase-btn']}
+            aria-label="increase quantity"
+            onClick={increment}
+          >
+            +
+          </button>
+        </fieldset>
+      ) : (
+        <button onClick={handleAddToCart} className={style['submit-btn']}>
+          Add To Cart
         </button>
-        <input
-          className={style.input}
-          type="number"
-          name="quantity"
-          value={quantity}
-          min={1}
-          onChange={handleChange}
-        />
-        <button
-          className={style['increase-btn']}
-          aria-label="increase quantity"
-          onClick={increment}
-        >
-          +
-        </button>
-      </fieldset>
-
-      <button onClick={handleAddToCart} className={style['submit-btn']}>
-        Add To Cart
-      </button>
+      )}
     </article>
   );
 }
